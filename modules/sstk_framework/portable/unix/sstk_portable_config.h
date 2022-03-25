@@ -1,0 +1,6 @@
+#ifndef __SSTK_PORTABLE_CONFIG_
+#define __SSTK_PORTABLE_CONFIG_
+
+#define SSTK_THREADS 1
+
+#endif // __SSTK_PORTABLE_CONFIG_

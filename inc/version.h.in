@@ -1,0 +1,47 @@
+#ifndef __VERSION_H__
+#define __VERSION_H__
+
+#ifndef VERSION_MAJOR 
+#define VERSION_MAJOR               ${VERSION_MAJOR}
+#endif	
+ 
+#ifndef VERSION_MINOR 
+#define VERSION_MINOR               ${VERSION_MINOR}
+#endif 
+ 
+#ifndef VERSION_PATCH 
+#define VERSION_PATCH               ${VERSION_PATCH} 
+#endif 
+
+#ifndef VERSION_STAGE 
+#define VERSION_STAGE               "${VERSION_STAGE}"
+#endif 
+ 
+#ifndef PRODUCT_MODEL 
+#define PRODUCT_MODEL               "${PRODUCT_MODEL}" 
+#endif 
+ 
+#ifndef PRODUCT_NAME 
+#define PRODUCT_NAME                "${PRODUCT_NAME}" 
+#endif 
+ 
+#ifndef PRODUCT_NUM 
+#define PRODUCT_NUM                 (${PRODUCT_NUM}) 
+#endif 
+ 
+#ifndef PRODUCT_CLIENT 
+#define PRODUCT_CLIENT              "${PRODUCT_CLIENT}" 
+#endif 
+ 
+#ifndef VERSION_GIT 
+#define VERSION_GIT                 "${VERSION_GIT}" 
+#endif 
+ 
+#define VERSION_FORMAT              "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}.${VERSION_STAGE}" \
+                                    "(${PRODUCT_NUM}_${PRODUCT_MODEL}_${PRODUCT_CLIENT}_${BUILD_TIME}_${VERSION_GIT})" 
+
+#define PROJECT_VERSION             "${PROJECT_VERSION}"
+
+
+#endif
+

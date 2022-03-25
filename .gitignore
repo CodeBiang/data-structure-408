@@ -1,0 +1,7 @@
+
+bin/*
+build/*
+logs/*
+
+!build/build-*.sh
+!.vscode/*

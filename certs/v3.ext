@@ -1,0 +1,11 @@
+authorityKeyIdentifier=keyid,issuer
+basicConstraints=CA:FALSE
+keyUsage = digitalSignature, nonRepudiation, keyEncipherment, dataEncipherment
+subjectAltName=email:copy,DNS:test.com,DNS:demo.com,DNS:,IP:192.168.7.1,dirName:dir_sect
+[dir_sect] 
+C=CN
+ST=Hebei
+L=Shijiazhuang
+O=WHST
+OU=EDGE
+CN=MORTIMER
