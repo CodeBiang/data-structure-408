@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include",
+                "${workspaceFolder}/modules/sstk_framework/core",
+                "${workspaceFolder}/modules/sstk_framework/math",
+                "${workspaceFolder}/modules/sstk_framework/radar",
+                "${workspaceFolder}/modules/sstk_framework/external",
+                "${workspaceFolder}/modules/sstk_framework/portable/unix",
+                "${workspaceFolder}/modules/sstk_framework/util",
+
+                "${workspaceFolder}/modules/sstk_tcp",
+                
+                "${workspaceFolder}/modules/cJSONx",
+
+                "${workspaceFolder}/inc",
+                "${workspaceFolder}/src",
+
+                "${workspaceFolder}/structure/inc"
+
+            ],
+            "defines": ["WOLFSSL_TLS13"],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "gnu11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}

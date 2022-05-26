@@ -34,11 +34,11 @@
 #endif 
  
 #ifndef VERSION_GIT 
-#define VERSION_GIT                 "GITC90511B" 
+#define VERSION_GIT                 "GIT63F4B29" 
 #endif 
  
 #define VERSION_FORMAT              "2.0.0.Alpha" \
-                                    "(01_TEST_NONE_20220325_135402_GITC90511B)" 
+                                    "(01_TEST_NONE_20220525_225651_GIT63F4B29)" 
 
 #define PROJECT_VERSION             "2.0.0"
 
