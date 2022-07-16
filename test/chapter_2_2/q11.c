@@ -18,6 +18,7 @@
 #include "util.h"
 
 static int mid_search(int* arr_a, int* arr_b, int l) {
+    // 这几个栈变量会在递归压栈时候提高空间复杂度, 可以去掉, 写在这里只是为了方便理解
     int idx = (l - 1) / 2;
     int a = arr_a[idx];
     int b = arr_b[idx];

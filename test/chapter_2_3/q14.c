@@ -6,7 +6,7 @@ struct node_s {
     struct node_s* next;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->next = NULL;
@@ -14,7 +14,7 @@ static inline struct node_s* node_dump(int value) {
 }
 
 static struct node_s* intersection_of_ordered_list(struct node_s* la, struct node_s* lb) {
-    struct node_s* lc = node_dump(0);
+    struct node_s* lc = node_create(0);
     struct node_s* pcur = lc;
 
     la = la->next;
@@ -22,7 +22,7 @@ static struct node_s* intersection_of_ordered_list(struct node_s* la, struct nod
 
     while (la && lb) {
         if (la->data == lb->data) {
-            pcur->next = node_dump(la->data);
+            pcur->next = node_create(la->data);
             pcur = pcur->next;
             la = la->next;
             lb = lb->next;
@@ -37,11 +37,11 @@ static struct node_s* intersection_of_ordered_list(struct node_s* la, struct nod
 }
 
 struct node_s* list_create(int arr[], size_t arr_len) {
-    struct node_s* list = node_dump(0);
+    struct node_s* list = node_create(0);
     struct node_s* cur = list;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur->next = node_dump(arr[i]);
+        cur->next = node_create(arr[i]);
         cur = cur->next;
     }
 

@@ -6,7 +6,8 @@
 
 bool linked_list_init(linked_list_t* l) {
     l->head = l->tail = NULL;
-    l->lenth = 0;
+    l->length = 0;
+    return true;
 }
 
 void linked_list_destory(linked_list_t* l) {
@@ -36,7 +37,7 @@ linked_node_t* linked_list_insert_head(linked_list_t* l) {
         l->head = node;
     }
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
@@ -55,17 +56,17 @@ linked_node_t* linked_list_insert_tail(linked_list_t* l) {
         l->tail = node;
     }
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
 
 linked_node_t* linked_list_insert(linked_list_t* l, int idx) {
-    if (idx < 0 || idx > l->lenth) return NULL;
+    if (idx < 0 || idx > l->length) return NULL;
 
     if (idx == 0)
         return linked_list_insert_head(l);
-    else if (idx == l->lenth)
+    else if (idx == l->length)
         return linked_list_insert_tail(l);
 
     linked_node_t* node = (linked_node_t*) malloc(sizeof(linked_node_t));
@@ -83,13 +84,13 @@ linked_node_t* linked_list_insert(linked_list_t* l, int idx) {
     cur->next = node;
     node->next = temp;
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
 
 bool linked_list_delete(linked_list_t* l, int idx, basic_obj_t* deleted_item) {
-    if (idx < 0 || idx >= l->lenth) return false;
+    if (idx < 0 || idx >= l->length) return false;
 
     linked_node_t* temp = NULL;
 
@@ -106,7 +107,7 @@ bool linked_list_delete(linked_list_t* l, int idx, basic_obj_t* deleted_item) {
     if (temp) {
         if (deleted_item) memcpy(deleted_item, &temp->data, sizeof(basic_obj_t));
         free(temp);
-        l->lenth--;
+        l->length--;
         return true;
     }
 
@@ -130,14 +131,14 @@ static bool memequals(const basic_obj_t a, const basic_obj_t b) {
     return memcmp(&a, &b, sizeof(basic_obj_t)) == 0;
 }
 
-int linked_list_index_of(linked_list_t* l, basic_obj_t elem, basic_obj_equals_fn equals) {
+int linked_list_index_of(linked_list_t* l, basic_obj_t* elem, basic_obj_equals_fn equals) {
     basic_obj_equals_fn eq = equals ? equals : memequals;
 
     int idx = 0;
     linked_node_t* node = l->head;
 
     while (node) {
-        if (eq(node->data, elem)) {
+        if (eq(&node->data, elem)) {
             return idx;
         }
         node = node->next;
@@ -148,7 +149,7 @@ int linked_list_index_of(linked_list_t* l, basic_obj_t elem, basic_obj_equals_fn
 }
 
 linked_node_t* linked_list_at(linked_list_t* l, int idx) {
-    if (idx < 0 || idx >= l->lenth) return NULL;
+    if (idx < 0 || idx >= l->length) return NULL;
 
     linked_node_t* node = l->head;
 
@@ -163,7 +164,7 @@ void linked_list_foreach(linked_list_t* l, basic_obj_accept_fn accept) {
     linked_node_t* node = l->head;
 
     while (node) {
-        accept(node->data);
+        accept(&node->data);
         node = node->next;
     }
 }

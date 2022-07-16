@@ -9,30 +9,29 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-int* swap_mn(int* arr, int m, int n) {
-    // 空间复杂度 O(m + n)
-    int* temp_arr = (int*) malloc((m + n) * sizeof(int));
+static void reverse(int* arr, int begin, int end) {
+    int temp;
+    while (begin < end) {
+        temp = arr[begin];
+        arr[begin] = arr[end];
+        arr[end] = temp;
 
-    for (int i = 0; i < n; i++) {
-        temp_arr[i] = arr[i + m];
+        begin++;
+        end--;
     }
+}
 
-    for (int i = 0; i < m; i++) {
-        temp_arr[i + n] = arr[i];
-    }
-
-    for (int i = 0; i < m + n; i++) {
-        arr[i] = temp_arr[i];
-    }
-
-    free(temp_arr);
+static void swap_mn(int* arr, int m, int n) {
+    reverse(arr, 0, m - 1);
+    reverse(arr, m, m + n - 1);
+    reverse(arr, 0, m + n - 1);
 }
 
 int main() {
     int arr[] = {1, 2, 3, 4, 5, 11, 12, 13};
     int m = 5;
     int n = 3;
-    swap_mn(arr, 5, 3);
+    swap_mn(arr, m, n);
     for (size_t i = 0; i < sizeof(arr) / sizeof(int); i++) {
         printf("%d ", arr[i]);
     }

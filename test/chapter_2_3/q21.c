@@ -7,7 +7,7 @@ struct node_s {
     struct node_s* next;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->next = NULL;
@@ -56,25 +56,22 @@ static bool is_circular(struct node_s* l) {
 }
 
 static struct node_s* list_get(struct node_s* l, int x) {
-    struct node_s* pre = l;
     struct node_s* cur = l->next;
-    struct node_s* xcur;
     while (cur) {
         if (cur->data == x) {
             return cur;
         }
-        pre = cur;
         cur = cur->next;
     }
     return NULL;
 }
 
 struct node_s* list_create(int arr[], size_t arr_len) {
-    struct node_s* list = node_dump(0);
+    struct node_s* list = node_create(0);
     struct node_s* cur = list;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur->next = node_dump(arr[i]);
+        cur->next = node_create(arr[i]);
         cur = cur->next;
     }
 

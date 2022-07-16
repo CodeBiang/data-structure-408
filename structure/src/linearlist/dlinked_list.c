@@ -6,7 +6,8 @@
 
 bool dlinked_list_init(dlinked_list_t* l) {
     l->head = l->tail = NULL;
-    l->lenth = 0;
+    l->length = 0;
+    return true;
 }
 
 void dlinked_list_destory(dlinked_list_t* l) {
@@ -37,7 +38,7 @@ dlinked_node_t* dlinked_list_insert_head(dlinked_list_t* l) {
         l->head = node;
     }
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
@@ -57,23 +58,23 @@ dlinked_node_t* dlinked_list_insert_tail(dlinked_list_t* l) {
         l->tail = node;
     }
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
 
 dlinked_node_t* dlinked_list_insert(dlinked_list_t* l, int idx) {
-    if (idx < 0 || idx > l->lenth) return NULL;
+    if (idx < 0 || idx > l->length) return NULL;
 
     if (idx == 0)
         return dlinked_list_insert_head(l);
-    else if (idx == l->lenth)
+    else if (idx == l->length)
         return dlinked_list_insert_tail(l);
 
     dlinked_node_t* node = (dlinked_node_t*) malloc(sizeof(dlinked_node_t));
     if (!node) return node;
 
-    bool from_head = idx < l->lenth / 2;
+    bool from_head = idx < l->length / 2;
 
     dlinked_node_t* cur;
     if (from_head) {
@@ -81,7 +82,7 @@ dlinked_node_t* dlinked_list_insert(dlinked_list_t* l, int idx) {
         while (--idx) cur = cur->next;
     } else {
         cur = l->tail;
-        while (++idx <= l->lenth) cur = cur->prev;
+        while (++idx <= l->length) cur = cur->prev;
     }
 
     assert(cur);
@@ -90,13 +91,13 @@ dlinked_node_t* dlinked_list_insert(dlinked_list_t* l, int idx) {
     cur->next = node;
     node->next = temp;
 
-    l->lenth++;
+    l->length++;
 
     return node;
 }
 
 bool dlinked_list_delete(dlinked_list_t* l, int idx, basic_obj_t* deleted_item) {
-    if (idx < 0 || idx >= l->lenth || l->lenth == 0) return false;
+    if (idx < 0 || idx >= l->length || l->length == 0) return false;
 
     dlinked_node_t* temp = NULL;
 
@@ -109,7 +110,7 @@ bool dlinked_list_delete(dlinked_list_t* l, int idx, basic_obj_t* deleted_item) 
             l->head = l->head->next;
             l->head->prev = NULL;
         }
-    } else if (idx == l->lenth - 1) {
+    } else if (idx == l->length - 1) {
         temp = l->tail;
         l->tail = l->tail->prev;
         l->tail->next = NULL;
@@ -119,7 +120,7 @@ bool dlinked_list_delete(dlinked_list_t* l, int idx, basic_obj_t* deleted_item) 
     if (temp) {
         if (deleted_item) memcpy(deleted_item, &temp->data, sizeof(basic_obj_t));
         free(temp);
-        l->lenth--;
+        l->length--;
         return true;
     }
 
@@ -142,14 +143,14 @@ static bool memequals(const basic_obj_t a, const basic_obj_t b) {
     return memcmp(&a, &b, sizeof(basic_obj_t)) == 0;
 }
 
-int dlinked_list_index_of(dlinked_list_t* l, basic_obj_t elem, basic_obj_equals_fn equals) {
+int dlinked_list_index_of(dlinked_list_t* l, basic_obj_t* elem, basic_obj_equals_fn equals) {
     basic_obj_equals_fn eq = equals ? equals : memequals;
 
     int idx = 0;
     dlinked_node_t* node = l->head;
 
     while (node) {
-        if (eq(node->data, elem)) {
+        if (eq(&node->data, elem)) {
             return idx;
         }
         node = node->next;
@@ -160,7 +161,7 @@ int dlinked_list_index_of(dlinked_list_t* l, basic_obj_t elem, basic_obj_equals_
 }
 
 dlinked_node_t* dlinked_list_at(dlinked_list_t* l, int idx) {
-    if (idx < 0 || idx >= l->lenth) return NULL;
+    if (idx < 0 || idx >= l->length) return NULL;
 
     dlinked_node_t* node = l->head;
 
@@ -175,7 +176,7 @@ void dlinked_list_foreach(dlinked_list_t* l, basic_obj_accept_fn accept) {
     dlinked_node_t* node = l->head;
 
     while (node) {
-        accept(node->data);
+        accept(&node->data);
         node = node->next;
     }
 }

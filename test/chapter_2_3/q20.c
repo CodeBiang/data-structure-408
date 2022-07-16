@@ -9,7 +9,7 @@ struct node_s {
     int freq;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->prev = NULL;
@@ -55,11 +55,11 @@ static struct node_s* list_get(struct node_s* l, int x) {
 }
 
 struct node_s* list_create(int arr[], size_t arr_len) {
-    struct node_s* list = node_dump(0);
+    struct node_s* list = node_create(0);
     struct node_s* cur = list;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur->next = node_dump(arr[i]);
+        cur->next = node_create(arr[i]);
         cur->next->prev = cur;
         cur = cur->next;
     }

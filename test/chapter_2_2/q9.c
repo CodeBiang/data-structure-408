@@ -31,6 +31,7 @@ static void insert_or_swap_with_next(sq_list_t* l, int x) {
         }
     }
     
+    // 插入, 此时插入位置为idx
     sq_list_insert(l, idx, &x);
 }
 
@@ -40,7 +41,7 @@ int main() {
     sq_list_build(&l, (int[]){1, 2, 3, 4, 5, 21, 22, 23, 24, 25, 0}, 11);
     l.length--;
 
-    insert_or_swap_with_next(&l, 21);
+    insert_or_swap_with_next(&l, 20);
     int_sq_list_print(&l);
 
     sq_list_destory(&l);

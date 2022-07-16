@@ -6,7 +6,7 @@
  */
 #include "util.h"
 
-static void remove_all_in_range5(sq_list_t* l, int s, int t) {
+static void remove_all_in_range4(sq_list_t* l, int s, int t) {
     if (l->length == 0) {
         printf("empty list\n");
         return;
@@ -44,7 +44,7 @@ static void remove_all_in_range5(sq_list_t* l, int s, int t) {
     l->length -= range;
 }
 
-static void remove_all_in_range6(sq_list_t* l, int s, int t) {
+static void remove_all_in_range5(sq_list_t* l, int s, int t) {
     if (l->length == 0) {
         printf("empty list\n");
         return;
@@ -74,7 +74,7 @@ static void q5() {
 
     sq_list_build(&list, (int[]){1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13}, 12);
 
-    remove_all_in_range5(&list, 8, 12);
+    remove_all_in_range4(&list, 8, 12);
     int_sq_list_print(&list);
 }
 
@@ -83,7 +83,7 @@ static void q6() {
 
     sq_list_build(&list, (int[]){17, 11, 9, 84, 9, 72, 9, 11, 9, 88}, 10);
 
-    remove_all_in_range6(&list, 8, 12);
+    remove_all_in_range5(&list, 8, 12);
     int_sq_list_print(&list);
 }
 

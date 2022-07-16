@@ -6,7 +6,7 @@ struct node_s {
     struct node_s* next;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->next = NULL;
@@ -18,7 +18,7 @@ static void odd_even_divide(struct node_s* a, struct node_s* b) {
     struct node_s ahead = {0, NULL};
     struct node_s* pa = &ahead;
     
-    // idx = 0, 辅导书从1开始, 奇偶逻辑反之
+    // idx = 0
     int i = 0;
     while (cur) {
         if (i % 2 == 0) {
@@ -37,11 +37,11 @@ static void odd_even_divide(struct node_s* a, struct node_s* b) {
 }
 
 struct node_s* list_create(int arr[], size_t arr_len) {
-    struct node_s* list = node_dump(0);
+    struct node_s* list = node_create(0);
     struct node_s* cur = list;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur->next = node_dump(arr[i]);
+        cur->next = node_create(arr[i]);
         cur = cur->next;
     }
 
@@ -54,7 +54,7 @@ int main() {
 
     struct node_s* l = list_create(arr, arr_len);
 
-    struct node_s* lb = node_dump(0);
+    struct node_s* lb = node_create(0);
     odd_even_divide(l, lb);
 
     struct node_s* cur = l->next;

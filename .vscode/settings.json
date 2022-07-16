@@ -64,6 +64,17 @@
         "sq_list.h": "c",
         "stdbool.h": "c",
         "stdio.h": "c",
-        "linked_node.h": "c"
+        "linked_node.h": "c",
+        "linked_list.h": "c",
+        "stack.h": "c",
+        "linked_stack.h": "c",
+        "basic.h": "c",
+        "sq_queue.h": "c",
+        "sq_stack.h": "c",
+        "math.h": "c",
+        "bitree.h": "c",
+        "linked_queue.h": "c",
+        "threaded_tree.h": "c",
+        "al_graph.h": "c"
     }
 }

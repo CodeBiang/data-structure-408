@@ -5,7 +5,7 @@
 
 #include "sq_list.h"
 
-static inline int sq_list_build(sq_list_t* list, int* arr, size_t size) {
+static inline void sq_list_build(sq_list_t* list, int* arr, size_t size) {
     sq_list_init(list, sizeof(int), size);
 
     for (size_t i = 0; i < size; i++) {

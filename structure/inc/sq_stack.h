@@ -22,6 +22,7 @@ void* sq_stack_pop(sq_stack_t* l);
 
 void* sq_stack_top(sq_stack_t* l);
 
-#define sq_stack_empty(l) ((l)->length == 0)
+#define sq_stack_empty(l) ((l)->top == -1)
+#define sq_stack_overflow(l) ((l)->top == (l)->capacity - 1)
 
 #endif

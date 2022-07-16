@@ -6,35 +6,19 @@ struct node_s {
     struct node_s* next;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->next = NULL;
     return ret;
 }
 
-static void remove_by_range(struct node_s* list, int min, int max) {
-    struct node_s* prev = list;
-    struct node_s* cur = list->next;
-
-    while (cur) {
-        if (cur->data < max && cur->data > min) {
-            prev->next = cur->next;
-            free(cur);
-            cur = prev->next;
-        } else {
-            prev = cur;
-            cur = cur->next;
-        }
-    }
-}
-
 struct node_s* list_create(int arr[], size_t arr_len) {
-    struct node_s* list = node_dump(0);
+    struct node_s* list = node_create(0);
     struct node_s* cur = list;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur->next = node_dump(arr[i]);
+        cur->next = node_create(arr[i]);
         cur = cur->next;
     }
 

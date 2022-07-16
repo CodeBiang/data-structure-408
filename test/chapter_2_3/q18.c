@@ -7,7 +7,7 @@ struct node_s {
     struct node_s* next;
 };
 
-static inline struct node_s* node_dump(int value) {
+static inline struct node_s* node_create(int value) {
     struct node_s* ret = (struct node_s*) malloc(sizeof(struct node_s));
     ret->data = value;
     ret->next = NULL;
@@ -33,7 +33,7 @@ struct node_s* circular_list_create(int arr[], size_t arr_len) {
     struct node_s* pre = NULL;
 
     for (size_t i = 0; i < arr_len; i++) {
-        cur = node_dump(arr[i]);
+        cur = node_create(arr[i]);
         if (!ret) ret = cur;
         
         if (pre) pre->next = cur;
